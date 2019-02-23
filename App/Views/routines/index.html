@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}PlansBook || Daily Routines{% endblock %}
+{% block body %}
+<div class="mt-3 mb-3 bg-red text-white p-3 rounded text-center font-b">
+    <form action="/add-daily" method="POST">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label" for="workout">Workout</label>
+            <div class="pt-2">
+                <input class="form-check-input ml-2 check-b" type="checkbox" id="workout" name="workout" value="1">
+            </div>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label" for="study">Study</label>
+            <div class="pt-2">
+                <input class="form-check-input ml-2 check-b" type="checkbox" id="study" name="study" value="1">
+            </div>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label" for="finance">Finance</label>
+            <div class="pt-2">
+                <input class="form-check-input ml-2 check-b" type="checkbox" id="finance" name="finance" value="1">
+            </div>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label" for="family">Family</label>
+            <div class="pt-2 col">
+                <input class="form-check-input ml-2 check-b" type="checkbox" id="family" name="family" value="1">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-dark">
+    </form>
+</div>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Workout</th>
+            <th scope="col">Study</th>
+            <th scope="col">Finance</th>
+            <th scope="col">Family</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for routine in routines %}
+        <tr class="font-weight-bold">
+            <td>{{ routine.routine_date }}</td>
+            {% if routine.workout == 1 %}
+            <td class="text-success">DONE</td>
+            {% else %}
+            <td class="text-danger">MISS</td>
+            {% endif %}
+
+            {% if routine.study == 1 %}
+            <td class="text-success">DONE</td>
+            {% else %}
+            <td class="text-danger">MISS</td>
+            {% endif %}
+
+            {% if routine.finance == 1 %}
+            <td class="text-success">DONE</td>
+            {% else %}
+            <td class="text-danger">MISS</td>
+            {% endif %}
+
+            {% if routine.family == 1 %}
+            <td class="text-success">DONE</td>
+            {% else %}
+            <td class="text-danger">MISS</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
